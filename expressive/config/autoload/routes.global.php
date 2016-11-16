@@ -1,5 +1,7 @@
 <?php
 
+use App\Action\Product;
+
 return [
     'dependencies' => [
         'invokables' => [
@@ -8,6 +10,7 @@ return [
         ],
         'factories' => [
             App\Action\HomePageAction::class => App\Action\HomePageFactory::class,
+            Product\ProductListPageAction::class => Product\Factory\ProductListPageFactory::class,
         ],
     ],
 
@@ -24,5 +27,11 @@ return [
             'middleware' => App\Action\PingAction::class,
             'allowed_methods' => ['GET'],
         ],
+        [
+            'name' => 'product.list',
+            'path' => '/admin/products',
+            'middleware' => Product\ProductListPageAction::class,
+            'allowed_methods' => ['GET'],
+        ]
     ],
 ];
