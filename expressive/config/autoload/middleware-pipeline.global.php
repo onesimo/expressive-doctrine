@@ -1,9 +1,12 @@
 <?php
 use Zend\Expressive\Container\ApplicationFactory;
 use Zend\Expressive\Helper;
-
+use App\Middleware;
 return [
     'dependencies' => [
+        'invokables' =>[
+            Middleware\DoctrineMiddleware::class => Middleware\DoctrineMiddleware::class
+        ],
         'factories' => [
             Helper\ServerUrlMiddleware::class => Helper\ServerUrlMiddlewareFactory::class,
             Helper\UrlHelperMiddleware::class => Helper\UrlHelperMiddlewareFactory::class,
@@ -40,6 +43,7 @@ return [
                 // - pre-conditions
                 // - modifications to outgoing responses
                 Helper\ServerUrlMiddleware::class,
+                Middleware\DoctrineMiddleware::class
             ],
             'priority' => 10000,
         ],

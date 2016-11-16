@@ -20,5 +20,9 @@ return [
             Application::class => ApplicationFactory::class,
             Helper\UrlHelper::class => Helper\UrlHelperFactory::class,
         ],
+        'aliases' => [
+            'Config' => 'config',
+            'Configuration' => 'config',
+        ]
     ],
 ];
