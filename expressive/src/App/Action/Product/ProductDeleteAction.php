@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Action\Product;
 
 use App\Entity\Product;
@@ -12,40 +13,32 @@ use Zend\Expressive\Router\RouterInterface;
 use Zend\Expressive\Template;
 use Zend\Hydrator\ClassMethods;
 
-class ProductListPageAction
+class ProductDeleteAction
 {
-
-    private $template;
-
     /**
-     *
      * @var EntityManager
      */
     private $entityManager;
-
     /**
-     *
      * @var RouterInterface
      */
     private $router;
 
-    public function __construct(Template\TemplateRendererInterface $template,   EntityManager $entityManager)
-    {
-        $this->template = $template;
+    public function __construct(
+        RouterInterface $router,
+        EntityManager $entityManager
+    ) {
         $this->entityManager = $entityManager;
-        //$this->router = $router;
+        $this->router = $router;
     }
 
     public function __invoke(ServerRequestInterface $request, ResponseInterface $response, callable $next = null)
     {
-        
-         $repository = $this->entityManager->getRepository(Product::class);
-         $products = $repository->findAll();
-         
-         return new HtmlResponse($this->template->render('app::product/list',[
-             'products'=> $products
-         ]));
-         
+        $repository = $this->entityManager->getRepository(Product::class);
+        $product = $repository->find($request->getAttribute('id'));
+        $this->entityManager->remove($product);
+        $this->entityManager->flush();
+        $uri = $this->router->generateUri('product.list');
+        return new RedirectResponse($uri);
     }
 }
- 

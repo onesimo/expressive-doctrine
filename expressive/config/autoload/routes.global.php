@@ -11,6 +11,9 @@ return [
         'factories' => [
             App\Action\HomePageAction::class => App\Action\HomePageFactory::class,
             Product\ProductListPageAction::class => Product\Factory\ProductListPageFactory::class,
+            Product\ProductCreatePageAction::class => Product\Factory\ProductCreatePageFactory::class,
+            Product\ProductUpdatePageAction::class => Product\Factory\ProductUpdatePageFactory::class,
+            Product\ProductDeleteAction::class => Product\Factory\ProductDeleteFactory::class
         ],
     ],
 
@@ -32,6 +35,24 @@ return [
             'path' => '/admin/products',
             'middleware' => Product\ProductListPageAction::class,
             'allowed_methods' => ['GET'],
-        ]
+        ],
+        [
+            'name' => 'product.create',
+            'path' => '/admin/products/create',
+            'middleware' => Product\ProductCreatePageAction::class,
+            'allowed_methods' => ['GET','POST'],
+        ],
+        [
+        'name' => 'product.update',
+        'path' => '/admin/product/{id}/update',
+        'middleware' => Product\ProductUpdatePageAction::class,
+        'allowed_methods' => ['GET', 'POST'],
+        ],
+        [
+            'name' => 'product.delete',
+            'path' => '/admin/product/{id}/delete',
+            'middleware' => Product\ProductDeleteAction::class,
+            'allowed_methods' => ['GET'],
+        ],
     ],
 ];

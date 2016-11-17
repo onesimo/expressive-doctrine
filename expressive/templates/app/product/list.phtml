@@ -22,7 +22,7 @@
                     <th>Quant.</th>
                     <th>Ações</th>
                 </tr>
-                <? foreach ($this->products as $product): ?>
+                <?php foreach ($this->products as $product): ?>
                     <tr>
                         <td><?php echo $this->escapeHtml($product->getName()); ?></td>
                         <td><?php echo $product->getValueSale(); ?></td>
@@ -33,7 +33,7 @@
                             <a href="<?php echo $this->url('product.delete', ['id' => $product->getId()]);?>">Excluir</a>
                         </td>
                     </tr>
-                <? endforeach; ?>
+                <?php endforeach; ?>
                 </tbody>
             </table>
         </div>

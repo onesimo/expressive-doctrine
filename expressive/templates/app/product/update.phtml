@@ -16,17 +16,20 @@ $quantity = $form->get('quantity');
 $quantity->setAttribute('class', 'form-control');
 
 $submit = $form->get('submit');
-$submit->setAttribute('class', 'btn btn-primary')->setLabel('Incluir');
+$submit->setAttribute('class', 'btn btn-primary')->setLabel('Editar');
 ?>
 
-<?php $form->setAttribute('action', $this->url('product.create')); ?>
+<?php
+$id = $form->getObject()->getId();
+$form->setAttribute('action', $this->url('product.update', ['id' => $id]));
+?>
 <?php $form->prepare(); ?>
 
 <div class="row">
     <div class="col-md-8">
         <div class="panel panel-primary">
             <div class="panel-heading">
-                Cadastro de produto
+                Edição de produto
             </div>
             <?php echo $this->form()->openTag($this->form); ?>
             <div class="panel-body">

@@ -11,6 +11,7 @@ return [
 
             Zend\View\HelperPluginManager::class =>
                 Zend\Expressive\ZendView\HelperPluginManagerFactory::class,
+            \Zend\View\HelperPluginManager::class => \App\Helper\HelperPluginManagerFactory::class
         ],
     ],
 
