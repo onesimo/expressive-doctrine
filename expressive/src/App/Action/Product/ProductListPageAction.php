@@ -1,4 +1,3 @@
-
 <?php
 namespace App\Action\Product;
 
@@ -13,7 +12,7 @@ use Zend\Expressive\Router\RouterInterface;
 use Zend\Expressive\Template;
 use Zend\Hydrator\ClassMethods;
 
-class ProductCreatePageAction
+class ProductListPageAction
 {
 
     private $template;

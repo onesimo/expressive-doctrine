@@ -1,4 +1,3 @@
-
 <?php
 namespace App\Action\Product\Factory;
 
